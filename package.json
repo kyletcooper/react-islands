@@ -1,5 +1,5 @@
 {
-	"name": "react-islands",
+	"name": "@wrd/react-islands",
 	"version": "1.0.0",
 	"description": "",
 	"main": "./dist/index.js",
@@ -7,8 +7,8 @@
 		"build": "tsc"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"author": "Kyle Thomas Cooper @ WRD",
+	"license": "MIT",
 	"devDependencies": {
 		"@babel/core": "^7.24.3",
 		"@babel/preset-env": "^7.24.3",
