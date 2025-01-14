@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, useEffect, useRef } from "react";
 import { Island, IslandOpts, IslandRenderOpts } from "./types";
 import { createRoot, hydrateRoot } from "react-dom/client";
 
-export default function createIsland(component: FC, opts: IslandOpts): Island {
+export function createIsland(component: FC, opts: IslandOpts): Island {
 	const mergedOpts: Required<IslandOpts> = {
 		multiple: false,
 		selector: `[data-hydrate="${opts.name}"]`,
