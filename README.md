@@ -10,8 +10,8 @@ Create your island. Here we use an existing component and use our Islands direct
 
 ```
 // ./islands/my-component.tsx
-import MyComponent from "@/components/filters";
-import createIsland from "@/react-islands";
+import MyComponent from "./components";
+import { createIsland } from "@wrdagency/react-islands";
 
 export const myComponentIsland = createIsland(MyComponent, {
 	name: "my-component",
@@ -44,7 +44,7 @@ Create a pre-render script. You can configure your build tool to use this as a s
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as islands from "./islands";
-import { prerenderIslands } from "@/react-islands/server";
+import { prerenderIslands } from "@wrdagency/react-islands/server";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -56,13 +56,21 @@ prerenderIslands({ islands, outDir });
 For our example we're using Vite. We'll build our prerendering script.
 
 ```
-npx vite build --ssr src/prerender.tsx --outDir /dist
+npx vite build --ssr ./src/prerender.tsx --outDir ./dist
 ```
 
 And then we can run that compiled script. It'll create all of our statically rendered islands and put them into the `outDir` we specified.
 
 ```
-node assets/scripts/dist/prerender.js
+node ./dist/prerender.js
+```
+
+For convenience we'd recommend setting up a script in your `package.json` for this like so:
+
+```
+"scripts": {
+	"prerender": "npx vite build --ssr ./src/prerender.tsx --outDir ./dist && node ./dist/prerender.js",
+},
 ```
 
 ## API
