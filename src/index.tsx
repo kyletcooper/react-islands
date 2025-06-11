@@ -1,6 +1,8 @@
 import { FC, PropsWithChildren, useEffect, useRef } from "react";
-import { Island, IslandOpts, IslandRenderOpts } from "./types";
 import { createRoot, hydrateRoot } from "react-dom/client";
+import { Island, IslandOpts, IslandRenderOpts } from "./types";
+
+export { Island };
 
 export function createIsland(component: FC, opts: IslandOpts): Island {
 	const mergedOpts: Required<IslandOpts> = {
