@@ -27,7 +27,7 @@
 	"author": "Kyle Thomas Cooper @ WRD",
 	"license": "MIT",
 	"devDependencies": {
-		"@types/react-dom": "^18.2.23",
+		"@types/react-dom": "^19.1.6",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.3"
 	},
@@ -36,6 +36,6 @@
 		"url": "https://github.com/kyletcooper/react-islands"
 	},
 	"peerDependencies": {
-		"react-dom": "^18.2.0"
+		"react-dom": "^19.1.0"
 	}
 }
