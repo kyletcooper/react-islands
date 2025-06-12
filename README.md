@@ -28,12 +28,10 @@ On the client you can then render each of those islands. They'll automatically h
 ```
 // index.ts
 import * as islands from "./islands";
+import { hydrateIslands } from "@wrdagency/react-islands";
 
-const isDev = (process.env.NODE_ENV || "development").trim() === "development";
+hydrateIslands( islands );
 
-for (const island of Object.values(islands)) {
-	island.render({ hydrate: !isDev });
-}
 ```
 
 Create a pre-render script. You can configure your build tool to use this as a seperate entrypoint.
