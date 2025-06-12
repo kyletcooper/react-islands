@@ -24,6 +24,15 @@ export function createIsland(component: FC, opts: IslandOpts): Island {
 	return island;
 }
 
+export function hydrateIslands(islands: Record<string, Island>): void {
+	const isDev =
+		(process.env.NODE_ENV || "development").trim() === "development";
+
+	for (const island of Object.values(islands)) {
+		island.render({ hydrate: !isDev });
+	}
+}
+
 export function withProps<T>(component: FC<T>, setProps: Partial<T>): FC<T> {
 	return (props: T) => {
 		return component({ ...props, ...setProps });
