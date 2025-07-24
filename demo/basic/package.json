@@ -1,0 +1,16 @@
+{
+	"type": "module",
+	"name": "react-islands-demo-basic",
+	"version": "0.0.1",
+	"scripts": {
+		"build": "npx react-islands build"
+	},
+	"devDependencies": {
+		"@wrdagency/react-islands": "file:../..",
+		"typescript": "^5.4.3"
+	},
+	"dependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	}
+}

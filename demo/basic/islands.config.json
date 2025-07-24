@@ -1,0 +1,10 @@
+{
+	"islands": {
+		"MyComponentOne": "./src/MyComponentOne.tsx",
+		"MyComponentTwo": "./src/MyComponentTwo.tsx"
+	},
+	"output": "./dist/",
+	"minify": true,
+	"ssg": true,
+	"typescript": true
+}

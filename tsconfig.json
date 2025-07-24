@@ -1,9 +1,10 @@
 {
 	"compilerOptions": {
+		"module": "es2022",
+		"moduleResolution": "node",
 		"outDir": "./dist/",
-		"target": "es2016",
-		"module": "Node16",
 		"jsx": "react-jsx",
+		"target": "es2022",
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
