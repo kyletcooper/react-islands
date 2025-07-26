@@ -1,12 +1,13 @@
 {
 	"type": "module",
 	"name": "@wrdagency/react-islands",
-	"version": "1.0.0",
+	"version": "2.0.1",
 	"description": "",
 	"main": "./dist/index.js",
 	"files": [
 		"dist",
-		"src"
+		"src",
+		"bin"
 	],
 	"bin": {
 		"react-islands": "./bin/index.cjs"
