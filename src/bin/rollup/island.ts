@@ -13,7 +13,6 @@ import { runRollups, watchRollup } from "./run";
 function createIslandRollupConfig(
 	config: IndividualIslandConfigOptions,
 	opts: {
-		name?: string;
 		subName: string;
 		format: ModuleFormat;
 		globals?: Record<string, string>;
@@ -25,22 +24,14 @@ function createIslandRollupConfig(
 	const { name, input, output, minify, ssg, jsx, typescript, common, define } =
 		config;
 
-	const {
-		name: mainName = `Islands.${name}`,
-		subName,
-		format,
-		globals = {},
-		prefix,
-		suffix,
-		plugins = [],
-	} = opts;
+	const { subName, format, globals = {}, prefix, suffix, plugins = [] } = opts;
 
 	return {
 		input,
 		external: Object.keys(globals),
 		jsx,
 		output: {
-			name: mainName,
+			name: `Islands.${name}`,
 			globals,
 			format,
 			entryFileNames: `[name]/${subName}`,

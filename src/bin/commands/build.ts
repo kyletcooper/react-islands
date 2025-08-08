@@ -28,7 +28,7 @@ export default new Command({
 			});
 		}
 
-		// 2. Setup watcher for each island.
+		// 2. Build each island.
 		for (const [name, input] of Object.entries(config.islands)) {
 			await output.spinner(`Creating island ${name}`, () => {
 				return buildIsland({

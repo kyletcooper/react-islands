@@ -21,7 +21,7 @@ export default new Command({
 		const output = new Output();
 		const config = readConfig(configPath);
 
-		// 1. Build common dependencies.
+		// 1. Watch common dependencies.
 		if (config.common) {
 			const watcher = watchCommon(config);
 			output.watcher("Common Dependencies", watcher);
