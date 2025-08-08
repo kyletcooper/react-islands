@@ -99,7 +99,8 @@ export function createIslandRollupConfigClient(
 				)}"]`,
 			};
 		}, {}),
-		suffix: (name) => `\nwindow.Islands['${name}']?.render('${name}')`,
+		suffix: () =>
+			`\nwindow.Islands['${config.name}']?.render('${config.name}')`,
 	});
 }
 
