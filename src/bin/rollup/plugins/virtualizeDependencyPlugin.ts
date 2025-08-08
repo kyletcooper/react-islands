@@ -1,8 +1,8 @@
 import { Plugin } from "rollup";
-import * as codeGen from "../generation";
+import { CodeGen } from "../../util/code-gen";
 
 type Options = {
-	dependencies: Record<string, string>;
+	dependencies: string[];
 	namespace?: string;
 };
 
@@ -22,13 +22,16 @@ export function virtualizeDependencyPlugin(opts: Options): Plugin {
 				return null;
 			}
 
-			let str = codeGen.createGlobalObject(namespace) + ";\n";
+			const code = new CodeGen();
+			code.createGlobalObject(namespace);
 
-			for (const [dependency, name] of Object.entries(dependencies)) {
-				str += codeGen.importAndGlobalisePackage(dependency, name);
+			for (const packageName of dependencies) {
+				const name = CodeGen.packageNameToProperty(packageName);
+				code.import(packageName, name);
+				code.setGlobalObjectProperty(namespace, name, name);
 			}
 
-			return str;
+			return code.out();
 		},
 	};
 }

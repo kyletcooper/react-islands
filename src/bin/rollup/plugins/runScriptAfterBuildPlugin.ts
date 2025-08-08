@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { Plugin } from "rollup";
-import { consoleExecute } from "../console";
+import { Output } from "../../util/output";
 
 type Options = {
 	deleteAfterRunning?: boolean;
@@ -32,7 +32,8 @@ export function runScriptAfterBuildPlugin(opts: Options): Plugin {
 					return;
 				}
 
-				consoleExecute(`node ${filePath}`).then(() => {
+				const out = new Output();
+				out.command(`node ${filePath}`).then(() => {
 					if (deleteAfterRunning) {
 						fs.unlinkSync(filePath);
 					}

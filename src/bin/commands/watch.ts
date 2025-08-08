@@ -1,10 +1,10 @@
-import { buildCommon, buildIsland } from "../rollup";
+import { watchCommon, watchIsland } from "../rollup";
 import { Command } from "../util/command";
 import { readConfig } from "../util/config";
 import { Output } from "../util/output";
 
 export default new Command({
-	description: "Build and statically render the islands.",
+	description: "Watch & build the islands for development",
 	args: [
 		{
 			name: "config",
@@ -23,20 +23,19 @@ export default new Command({
 
 		// 1. Build common dependencies.
 		if (config.common) {
-			await output.spinner("Creating common dependencies file", async () => {
-				return buildCommon(config);
-			});
+			const watcher = watchCommon(config);
+			output.watcher("Common Dependencies", watcher);
 		}
 
 		// 2. Setup watcher for each island.
 		for (const [name, input] of Object.entries(config.islands)) {
-			await output.spinner(`Creating island ${name}`, () => {
-				return buildIsland({
-					name,
-					input,
-					...config,
-				});
+			const watcher = watchIsland({
+				name,
+				input,
+				...config,
 			});
+
+			output.watcher(name, watcher);
 		}
 	},
 });

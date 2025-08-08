@@ -1,5 +1,5 @@
 import { Island } from "./island";
 import { isServer, withProps } from "./util";
 
-export type { BuildOptions } from "./bin/rollup/options";
+export type { ConfigOptions } from "./bin/util/config";
 export { Island, isServer, withProps };
