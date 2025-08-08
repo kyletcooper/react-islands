@@ -8,6 +8,7 @@ export type ConfigOptions = {
 	jsx?: "react" | "react-jsx" | "preserve" | "preserve-react";
 	typescript?: boolean;
 	common?: string[];
+	define?: Record<string, string>;
 };
 
 export type NormalizedConfigOptions = {
@@ -18,6 +19,7 @@ export type NormalizedConfigOptions = {
 	jsx: "react" | "react-jsx" | "preserve" | "preserve-react";
 	typescript: boolean;
 	common: string[];
+	define: Record<string, string>;
 };
 
 export type IndividualIslandConfigOptions = Omit<
@@ -64,5 +66,6 @@ export function normalizeBuildOptions(
 			"react-dom/client",
 			"@wrdagency/react-islands",
 		],
+		define: options.define || {},
 	};
 }

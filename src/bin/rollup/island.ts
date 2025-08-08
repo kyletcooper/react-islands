@@ -22,7 +22,8 @@ function createIslandRollupConfig(
 		plugins?: Plugin[];
 	}
 ): RollupOptions {
-	const { name, input, output, minify, ssg, jsx, typescript, common } = config;
+	const { name, input, output, minify, ssg, jsx, typescript, common, define } =
+		config;
 
 	const {
 		name: mainName = `Islands.${name}`,
@@ -63,7 +64,10 @@ function createIslandRollupConfig(
 			commonjsPlugin(),
 			replacePlugin({
 				preventAssignment: true,
-				"process.env.NODE_ENV": JSON.stringify("production"),
+				values: {
+					...define,
+					"process.env.NODE_ENV": JSON.stringify("production"),
+				},
 			}),
 			minify && terserPlugin(),
 			typescript &&
