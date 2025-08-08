@@ -53,6 +53,16 @@ function createIslandRollupConfig(
 				],
 			}),
 			commonjsPlugin(),
+			typescript &&
+				typescriptPlugin({
+					outputToFilesystem: false,
+					noForceEmit: true,
+					compilerOptions: {
+						outDir: output,
+						jsx,
+					},
+				}),
+			typescript && typescriptPathsPlugin(),
 			replacePlugin({
 				preventAssignment: true,
 				values: {
@@ -61,16 +71,6 @@ function createIslandRollupConfig(
 				},
 			}),
 			minify && terserPlugin(),
-			typescript &&
-				typescriptPlugin({
-					outputToFilesystem: true,
-					noForceEmit: true,
-					compilerOptions: {
-						outDir: output,
-						jsx,
-					},
-				}),
-			typescript && typescriptPathsPlugin(),
 			...plugins,
 		],
 	};

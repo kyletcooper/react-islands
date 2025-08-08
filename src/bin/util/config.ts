@@ -44,13 +44,7 @@ export function normalizeBuildOptions(
 		value: boolean | undefined | null | void,
 		fallback: boolean
 	): boolean => {
-		if (value === false) {
-			return false;
-		} else if (value === true) {
-			return true;
-		} else {
-			return fallback;
-		}
+		return typeof value === "boolean" ? value : fallback;
 	};
 
 	return {
@@ -59,7 +53,7 @@ export function normalizeBuildOptions(
 		minify: normalizeBoolean(options.minify, true),
 		ssg: normalizeBoolean(options.ssg, true),
 		jsx: options.jsx || "react-jsx",
-		typescript: normalizeBoolean(options.ssg, false),
+		typescript: normalizeBoolean(options.typescript, true),
 		common: options.common || [
 			"react",
 			"react/jsx-runtime",
