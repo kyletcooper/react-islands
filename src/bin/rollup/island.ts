@@ -34,7 +34,7 @@ function createIslandRollupConfig(
 			name: `Islands.${name}`,
 			globals,
 			format,
-			entryFileNames: `[name]/${subName}`,
+			entryFileNames: `${name}/${subName}`,
 			dir: output,
 			banner: prefix && ((chunk) => prefix(chunk.name)),
 			footer: suffix && ((chunk) => suffix(chunk.name)),
