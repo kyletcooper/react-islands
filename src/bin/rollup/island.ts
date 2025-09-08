@@ -13,6 +13,7 @@ import { runRollups, watchRollup } from "./run";
 function createIslandRollupConfig(
 	config: IndividualIslandConfigOptions,
 	opts: {
+		external?: string[];
 		subName: string;
 		format: ModuleFormat;
 		globals?: Record<string, string>;
@@ -21,14 +22,21 @@ function createIslandRollupConfig(
 		plugins?: Plugin[];
 	}
 ): RollupOptions {
-	const { name, input, output, minify, ssg, jsx, typescript, common, define } =
-		config;
+	const { name, input, output, minify, jsx, typescript, define } = config;
 
-	const { subName, format, globals = {}, prefix, suffix, plugins = [] } = opts;
+	const {
+		external = [],
+		subName,
+		format,
+		globals = {},
+		prefix,
+		suffix,
+		plugins = [],
+	} = opts;
 
 	return {
 		input,
-		external: Object.keys(globals),
+		external: [...Object.keys(globals), ...external],
 		jsx,
 		output: {
 			name: `Islands.${name}`,
@@ -99,6 +107,7 @@ export function createIslandRollupConfigServer(
 	config: IndividualIslandConfigOptions
 ): RollupOptions {
 	return createIslandRollupConfig(config, {
+		external: ["react", "react-dom"],
 		subName: "server.cjs",
 		format: "cjs",
 		suffix: () =>
